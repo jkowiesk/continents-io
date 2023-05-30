@@ -22,7 +22,7 @@ export default function CountryInput() {
   }
 
   return (
-    <form onSubmit={onClick} className="flex flex-1 gap-4">
+    <form onSubmit={onClick} className="row grid grid-cols-2 grid-rows-2 gap-8">
       <Input value={continent} onChange={(e) => setContinent(e.target.value)} />
       {/* number input with range 2 to 10 */}
       <Input
@@ -30,10 +30,12 @@ export default function CountryInput() {
         value={limit}
         min={2}
         max={10}
-        className=""
+        className="invalid:border-red-800"
         onChange={(e) => setLimit(parseInt(e.target.value))}
       />
-      <Button type="submit">Get Countries</Button>
+      <Button className="col-span-2" type="submit">
+        Get Countries
+      </Button>
     </form>
   )
 }
