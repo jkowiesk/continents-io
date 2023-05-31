@@ -38,7 +38,7 @@ export default function CountriesDialog({ countries, setCountries }: Props) {
             <Card className="border- relative grid w-full grid-cols-[4rem_1fr] border-2 border-contrast p-2">
               <h1 className="justify-self-center text-4xl">{country.flag}</h1>
               <CardContent className="align-center flex  h-full w-full flex-1 justify-between p-2 px-4 sm:px-0">
-                <div className="flex w-full flex-col gap-4 ">
+                <div className="flex w-full flex-col gap-4 pr-[1px]">
                   <p className="flex flex-col text-sm">
                     <span className="opacity-50">Official Name </span>
                     <span>{country.official}</span>
