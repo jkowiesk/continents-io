@@ -10,7 +10,7 @@ export type Country = {
   official: string
   population: number
   flag: string
-  currencies: { name: string; symbol: string }
+  currencies: { name: string; symbol: string }[]
   subregion: string
   languages: string[]
 }
@@ -47,10 +47,11 @@ export const getCountriesByContinent = async (
     const info: any[] = await fetchCountry(country)
     // get random element of info list
     const randomInfo = info.sort(() => 0.5 - Math.random())[0]
+    console.log(randomInfo.currencies)
     const {
       name: { official },
       population,
-      currencies: { name, symbol },
+      currencies,
       subregion,
       languages,
       flag,
@@ -60,7 +61,7 @@ export const getCountriesByContinent = async (
       official,
       population,
       flag,
-      currencies: { name, symbol },
+      currencies: Object.values(currencies),
       subregion,
       languages: Object.values(languages),
     })
