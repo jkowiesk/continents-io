@@ -6,6 +6,8 @@ import { formatNumber } from "./utils"
 const GRAPHQL_URL = "https://countries.trevorblades.com/graphql"
 const API_URL = "https://restcountries.com/v3.1/name"
 
+const notFoundMsg = "No information found!"
+
 type Continent = { continent: { countries: { name: string }[] } }
 
 export type Country = {
@@ -63,14 +65,14 @@ export const getCountriesByContinent = async (
     } = randomInfo
 
     countriesInfo.push({
-      official: official || "unknown",
-      population: population ? formatNumber(population) : "unknown",
-      flag: flag || "unknown",
+      official: official || notFoundMsg,
+      population: population ? formatNumber(population) : notFoundMsg,
+      flag: flag || notFoundMsg,
       currencies: currencies
         ? Object.values(currencies)
-        : [{ name: "unknown", symbol: "" }],
-      subregion: subregion || "unknown",
-      languages: languages ? Object.values(languages) : ["unknown"],
+        : [{ name: notFoundMsg, symbol: "" }],
+      subregion: subregion || notFoundMsg,
+      languages: languages ? Object.values(languages) : [notFoundMsg],
     })
   }
 
