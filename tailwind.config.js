@@ -23,6 +23,10 @@ module.exports = {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
+        contrast: {
+          DEFAULT: "var(--contrast)",
+          foreground: "var(--contrast-foreground)",
+        },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
