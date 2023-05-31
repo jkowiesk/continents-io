@@ -56,7 +56,11 @@ export default function CountriesDialog({ countries, setCountries }: Props) {
                   </p>
                 </div>
                 <div className="w-[2px] border-l-2 border-dotted border-contrast opacity-30"></div>
-                <div className="mr-auto flex h-full w-full flex-col justify-around gap-4 pl-8 ">
+                <div className="flex w-full flex-col gap-4 pl-8 ">
+                  <p className="flex flex-col  text-sm">
+                    <span className="opacity-50">Capital </span>
+                    <span>{country.capital}</span>
+                  </p>
                   <p className="flex flex-col  text-sm">
                     <span className="opacity-50">Population </span>
                     <span>{country.population}</span>

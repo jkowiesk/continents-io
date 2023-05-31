@@ -19,15 +19,15 @@ type Props = {
 export default function CountryInput({ setCountries }: Props) {
   const [continent, setContinent] = useState("Europe")
   const [isLoading, setIsLoading] = useState(false)
-  const [isError, setIsError] = useState(false)
+  const [error, setError] = useState(0)
   const [limit, setLimit] = useState(10)
 
   const onError = () => {
-    setIsError(true)
+    setError((err) => err + 1)
     setContinent("")
     setIsLoading(false)
     setTimeout(() => {
-      setIsError(false)
+      setError((err) => err - 1)
     }, 2000)
   }
   const onClick = async (e: any) => {
@@ -74,7 +74,10 @@ export default function CountryInput({ setCountries }: Props) {
     )
 
   return (
-    <form onSubmit={onClick} className="row grid grid-cols-2 grid-rows-2 gap-8">
+    <form
+      onSubmit={onClick}
+      className="row grid grid-cols-[2fr_1fr] grid-rows-2 gap-8 md:grid-cols-2"
+    >
       <div>
         <Label htmlFor="continent">Continent</Label>
         <Input
@@ -92,14 +95,14 @@ export default function CountryInput({ setCountries }: Props) {
           value={limit}
           min={2}
           max={10}
-          className="invalid:border-red-800"
+          className=" invalid:border-red-800 "
           onChange={(e) => setLimit(parseInt(e.target.value))}
         />
       </div>
       <Button className="col-span-2" type="submit">
         Get Countries
       </Button>
-      {isError && <ContinentError />}
+      {error > 0 && <ContinentError />}
     </form>
   )
 }

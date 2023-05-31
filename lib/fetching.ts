@@ -16,6 +16,7 @@ export type Country = {
   flag: string
   currencies: { name: string; symbol: string }[]
   subregion: string
+  capital: string
   languages: string[]
 }
 
@@ -62,12 +63,14 @@ export const getCountriesByContinent = async (
       subregion,
       languages,
       flag,
+      capital,
     } = randomInfo
 
     countriesInfo.push({
       official: official || notFoundMsg,
       population: population ? formatNumber(population) : notFoundMsg,
       flag: flag || notFoundMsg,
+      capital: capital || notFoundMsg,
       currencies: currencies
         ? Object.values(currencies)
         : [{ name: notFoundMsg, symbol: "" }],

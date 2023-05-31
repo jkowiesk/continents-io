@@ -13,8 +13,8 @@ export default function Stage() {
   // rotate earth every frame
   useFrame(() => {
     if (ref.current) {
-      ref.current.rotation.y += 0.0005 // Adjust the rotation speed as needed
-      ref.current.rotation.x += 0.0002
+      ref.current.rotation.y += 0.0006 // Adjust the rotation speed as needed
+      ref.current.rotation.x += 0.0003
     }
   })
 

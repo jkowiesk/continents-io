@@ -16,7 +16,7 @@ export function MainNav({ items }: MainNavProps) {
       <Link href="/" className="flex items-center space-x-2">
         <Icons.logo className="h-6 w-6" />
         <span className="inline-block font-bold">
-          Countries
+          Continents
           <span className="text-green-300">IO</span>
         </span>
       </Link>

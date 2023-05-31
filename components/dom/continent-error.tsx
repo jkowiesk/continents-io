@@ -6,7 +6,7 @@ export function ContinentError() {
   return (
     <Alert
       variant="destructive"
-      className="fixed inset-x-0 top-24 mx-auto w-64"
+      className="fixed inset-x-0 top-24 mx-auto w-[30rem]"
     >
       <AlertCircle className="h-4 w-4" />
       <AlertTitle>Error</AlertTitle>
