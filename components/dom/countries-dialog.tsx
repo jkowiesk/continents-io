@@ -1,6 +1,6 @@
 "use client"
 
-import { Country } from "@/lib/graphql"
+import { Country } from "@/lib/fetching"
 import {
   Dialog,
   DialogContent,
@@ -33,11 +33,11 @@ export default function CountriesDialog({ countries, setCountries }: Props) {
             All found countries from chosen continent
           </DialogDescription>
         </DialogHeader>
-        <div className="flex h-[32rem] flex-col gap-8 overflow-auto px-12">
+        <div className="flex h-[32rem] flex-col gap-8 overflow-auto md:px-8">
           {countries.map((country: Country) => (
             <Card className="border- relative grid w-full grid-cols-[4rem_1fr] border-2 border-contrast p-2">
               <h1 className="justify-self-center text-4xl">{country.flag}</h1>
-              <CardContent className="align-center flex  h-full w-full flex-1 justify-between p-2 px-4">
+              <CardContent className="align-center flex  h-full w-full flex-1 justify-between p-2 px-4 sm:px-0">
                 <div className="flex w-full flex-col gap-4 ">
                   <p className="flex flex-col text-sm">
                     <span className="opacity-50">Official Name </span>
