@@ -66,7 +66,10 @@ export default function CountriesDialog({ countries, setCountries }: Props) {
                     {/* map on currencies */}
                     {country.currencies.map(
                       ({ name, symbol }: { name: string; symbol: string }) => (
-                        <span>{`${name} (${symbol})`}</span>
+                        <p>
+                          <span>{`${name} `}</span>
+                          <span>{symbol.length ? `(${symbol})` : ""}</span>
+                        </p>
                       )
                     )}
                   </p>

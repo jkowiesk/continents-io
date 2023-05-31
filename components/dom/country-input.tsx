@@ -21,17 +21,30 @@ export default function CountryInput({ setCountries }: Props) {
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
   const [limit, setLimit] = useState(10)
+
+  const onError = () => {
+    setIsError(true)
+    setContinent("")
+    setIsLoading(false)
+    setTimeout(() => {
+      setIsError(false)
+    }, 2000)
+  }
   const onClick = async (e: any) => {
     setIsLoading(true)
     e.preventDefault()
     const continentCode = CONTINENTS_CODES.get(continent.toLowerCase())
     console.log(continentCode)
     if (!continentCode) {
-      setIsError(true)
-      setContinent("")
+      onError()
       return
     }
     const countries = await getCountriesByContinent(continentCode, limit)
+    // if countries empty
+    if (!countries.length) {
+      onError()
+      return
+    }
     setCountries(countries)
     console.log(countries)
     setIsLoading(false)

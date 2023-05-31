@@ -1,12 +1,11 @@
 "use client"
 
-import { OrbitControls, Preload } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
 
 import Stage from "./stage"
 
 export default function Scene() {
-  // Everything defined in here will persist between route changes, only children are swapped
+  // Everything defined in here are scenes properties
 
   return (
     <Canvas camera={{ fov: 100, near: 0.1, far: 1000 }}>
