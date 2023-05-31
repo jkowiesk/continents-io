@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import lookup from "country-code-lookup"
 
 import { getCountriesByContinent } from "@/lib/graphql"
 import { CONTINENTS_CODES } from "@/lib/utils"
@@ -9,17 +8,27 @@ import { CONTINENTS_CODES } from "@/lib/utils"
 import { Button } from "../ui/button"
 import { Input } from "../ui/input"
 
-export default function CountryInput() {
+type Props = {
+  setCountries: (countries: any) => void
+}
+
+export default function CountryInput({ setCountries }: Props) {
   const [continent, setContinent] = useState("Europe")
+  const [isLoading, setIsLoading] = useState(false)
   const [limit, setLimit] = useState(10)
   const onClick = async (e: any) => {
+    setIsLoading(true)
     e.preventDefault()
     const continentCode = CONTINENTS_CODES.get(continent.toLowerCase())
     console.log(continentCode)
     if (!continentCode) return
     const countries = await getCountriesByContinent(continentCode, limit)
+    setCountries(countries)
     console.log(countries)
+    setIsLoading(false)
   }
+
+  if (isLoading) return <h1>Loading...</h1>
 
   return (
     <form onSubmit={onClick} className="row grid grid-cols-2 grid-rows-2 gap-8">
