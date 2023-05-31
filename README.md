@@ -1,12 +1,12 @@
-# next-template
+## Running locally in development mode
 
-A Next.js 13 template for building apps with Radix UI and Tailwind CSS.
+To get started, just clone the repository and run `npm install && npm run dev`:
 
-## Usage
+    git clone https://github.com/jkowiesk/continents-io.git
+    npm install
+    npm run dev
 
-```bash
-npx create-next-app -e https://github.com/shadcn/next-template
-```
+Note: If you are running on Windows run install --noptional flag (i.e. `npm install --no-optional`) which will skip installing fsevents.
 
 ## Features
 
@@ -16,7 +16,3 @@ npx create-next-app -e https://github.com/shadcn/next-template
 - Icons from [Lucide](https://lucide.dev)
 - Dark mode with `next-themes`
 - Tailwind CSS class sorting, merging and linting.
-
-## License
-
-Licensed under the [MIT license](https://github.com/shadcn/ui/blob/main/LICENSE.md).
