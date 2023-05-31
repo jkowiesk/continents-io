@@ -19,7 +19,7 @@ export default function Stage() {
   })
 
   return (
-    <group ref={ref} position={[0.2, -0.2, 3.8]}>
+    <group ref={ref}>
       <mesh
         geometry={nodes.Object_4.geometry}
         material={materials["Scene_-_Root"]}
