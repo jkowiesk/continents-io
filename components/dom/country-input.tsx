@@ -1,12 +1,16 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { AlertCircle, FileWarning, Terminal } from "lucide-react"
 
-import { getCountriesByContinent } from "@/lib/graphql"
+import { getCountriesByContinent } from "@/lib/fetching"
 import { CONTINENTS_CODES } from "@/lib/utils"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
 import { Button } from "../ui/button"
 import { Input } from "../ui/input"
+import { Label } from "../ui/label"
+import { ContinentError } from "./continent-error"
 
 type Props = {
   setCountries: (countries: any) => void
@@ -15,14 +19,32 @@ type Props = {
 export default function CountryInput({ setCountries }: Props) {
   const [continent, setContinent] = useState("Europe")
   const [isLoading, setIsLoading] = useState(false)
+  const [isError, setIsError] = useState(false)
   const [limit, setLimit] = useState(10)
+
+  const onError = () => {
+    setIsError(true)
+    setContinent("")
+    setIsLoading(false)
+    setTimeout(() => {
+      setIsError(false)
+    }, 2000)
+  }
   const onClick = async (e: any) => {
     setIsLoading(true)
     e.preventDefault()
     const continentCode = CONTINENTS_CODES.get(continent.toLowerCase())
     console.log(continentCode)
-    if (!continentCode) return
+    if (!continentCode) {
+      onError()
+      return
+    }
     const countries = await getCountriesByContinent(continentCode, limit)
+    // if countries empty
+    if (!countries.length) {
+      onError()
+      return
+    }
     setCountries(countries)
     console.log(countries)
     setIsLoading(false)
@@ -53,19 +75,31 @@ export default function CountryInput({ setCountries }: Props) {
 
   return (
     <form onSubmit={onClick} className="row grid grid-cols-2 grid-rows-2 gap-8">
-      <Input value={continent} onChange={(e) => setContinent(e.target.value)} />
+      <div>
+        <Label htmlFor="continent">Continent</Label>
+        <Input
+          value={continent}
+          id="continent"
+          onChange={(e) => setContinent(e.target.value)}
+        />
+      </div>
       {/* number input with range 2 to 10 */}
-      <Input
-        type="number"
-        value={limit}
-        min={2}
-        max={10}
-        className="invalid:border-red-800"
-        onChange={(e) => setLimit(parseInt(e.target.value))}
-      />
+      <div>
+        <Label htmlFor="Limit">Limit</Label>
+        <Input
+          type="number"
+          id="limit"
+          value={limit}
+          min={2}
+          max={10}
+          className="invalid:border-red-800"
+          onChange={(e) => setLimit(parseInt(e.target.value))}
+        />
+      </div>
       <Button className="col-span-2" type="submit">
         Get Countries
       </Button>
+      {isError && <ContinentError />}
     </form>
   )
 }

@@ -13,6 +13,16 @@ export const CONTINENTS_CODES = new Map(
   })
 )
 
+const options = {
+  style: "decimal",
+  useGrouping: true,
+  maximumFractionDigits: 2,
+}
+
+export function formatNumber(number: number) {
+  return number.toLocaleString("en-US", options)
+}
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
